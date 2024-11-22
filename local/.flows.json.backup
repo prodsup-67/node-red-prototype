@@ -1,0 +1,292 @@
+[
+    {
+        "id": "45a5798c969a3877",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d07a2703c7a0604b",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "72f7db22c25b098f",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "033a3e4e64a4d53a",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "72f7db22c25b098f",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "433cb5fb389f8d23",
+        "type": "ui_text",
+        "z": "45a5798c969a3877",
+        "group": "033a3e4e64a4d53a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1190,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "d6f61006b4207f91",
+        "type": "ui_webcam",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "group": "033a3e4e64a4d53a",
+        "order": 1,
+        "width": 0,
+        "height": 5,
+        "countdown": false,
+        "autoStart": false,
+        "hideCaptureButton": false,
+        "showImage": "2",
+        "mirror": true,
+        "format": "png",
+        "x": 460,
+        "y": 1080,
+        "wires": [
+            [
+                "7e43db79ac128262"
+            ]
+        ]
+    },
+    {
+        "id": "2b89a29ab6770528",
+        "type": "inject",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1060,
+        "wires": [
+            [
+                "d6f61006b4207f91"
+            ]
+        ]
+    },
+    {
+        "id": "7e43db79ac128262",
+        "type": "function",
+        "z": "45a5798c969a3877",
+        "name": "function 1",
+        "func": "msg.payload = { \"imageEncoded\": Buffer.from(msg.payload).toString('base64') }\nmsg.headers = {\"Content-Type\": \"application/x-www-form-urlencoded\"}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1020,
+        "wires": [
+            [
+                "f37d8272fd895041"
+            ]
+        ]
+    },
+    {
+        "id": "f37d8272fd895041",
+        "type": "http request",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:3003/upload_base64",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 830,
+        "y": 1000,
+        "wires": [
+            [
+                "3c8e18c08ac60298",
+                "4d3e3b0a5159ac45"
+            ]
+        ]
+    },
+    {
+        "id": "abd4ac8da4f33f16",
+        "type": "debug",
+        "z": "45a5798c969a3877",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "3c8e18c08ac60298",
+        "type": "function",
+        "z": "45a5798c969a3877",
+        "name": "function 2",
+        "func": "const obj = JSON.parse(msg.payload)\nmsg.payload = obj.predictions[0].class\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 940,
+        "wires": [
+            [
+                "433cb5fb389f8d23"
+            ]
+        ]
+    },
+    {
+        "id": "4d3e3b0a5159ac45",
+        "type": "json",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1010,
+        "y": 1020,
+        "wires": [
+            [
+                "abd4ac8da4f33f16"
+            ]
+        ]
+    }
+]
