@@ -136,8 +136,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1190,
-        "y": 900,
+        "x": 1170,
+        "y": 100,
         "wires": []
     },
     {
@@ -156,39 +156,10 @@
         "mirror": true,
         "format": "png",
         "x": 460,
-        "y": 1080,
+        "y": 320,
         "wires": [
             [
                 "7e43db79ac128262"
-            ]
-        ]
-    },
-    {
-        "id": "2b89a29ab6770528",
-        "type": "inject",
-        "z": "45a5798c969a3877",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 1060,
-        "wires": [
-            [
-                "d6f61006b4207f91"
             ]
         ]
     },
@@ -204,8 +175,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 1020,
+        "x": 680,
+        "y": 320,
         "wires": [
             [
                 "f37d8272fd895041"
@@ -229,7 +200,7 @@
         "senderr": false,
         "headers": [],
         "x": 830,
-        "y": 1000,
+        "y": 200,
         "wires": [
             [
                 "3c8e18c08ac60298",
@@ -249,8 +220,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 1020,
+        "x": 1160,
+        "y": 280,
         "wires": []
     },
     {
@@ -265,8 +236,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1000,
-        "y": 940,
+        "x": 980,
+        "y": 140,
         "wires": [
             [
                 "433cb5fb389f8d23"
@@ -281,12 +252,242 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1010,
-        "y": 1020,
+        "x": 970,
+        "y": 280,
         "wires": [
             [
                 "abd4ac8da4f33f16"
             ]
+        ]
+    },
+    {
+        "id": "a11c256eeeee1ddc",
+        "type": "ui_button",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "group": "033a3e4e64a4d53a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "22973c48729a080b"
+            ]
+        ]
+    },
+    {
+        "id": "22973c48729a080b",
+        "type": "function",
+        "z": "45a5798c969a3877",
+        "name": "function 3",
+        "func": "msg.capture = true\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "d6f61006b4207f91"
+            ]
+        ]
+    },
+    {
+        "id": "44dafe7d7123dc28",
+        "type": "inject",
+        "z": "45a5798c969a3877",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "22973c48729a080b"
+            ]
+        ]
+    },
+    {
+        "id": "1ff4a3c939be464d",
+        "type": "file in",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "filename": "dog.webp",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "ac2b96c7f7933dcd"
+            ]
+        ]
+    },
+    {
+        "id": "ac2b96c7f7933dcd",
+        "type": "debug",
+        "z": "45a5798c969a3877",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "abf6e7ee86734c61",
+        "type": "inject",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "1ff4a3c939be464d"
+            ]
+        ]
+    },
+    {
+        "id": "8cfd42ca200a0bdb",
+        "type": "jimp-image",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "data": "payload",
+        "dataType": "msg",
+        "ret": "buf",
+        "parameter1": "",
+        "parameter1Type": "msg",
+        "parameter2": "",
+        "parameter2Type": "msg",
+        "parameter3": "",
+        "parameter3Type": "msg",
+        "parameter4": "",
+        "parameter4Type": "msg",
+        "parameter5": "",
+        "parameter5Type": "msg",
+        "parameter6": "",
+        "parameter6Type": "msg",
+        "parameter7": "",
+        "parameter7Type": "msg",
+        "parameter8": "",
+        "parameter8Type": "msg",
+        "sendProperty": "payload",
+        "sendPropertyType": "msg",
+        "parameterCount": 0,
+        "jimpFunction": "none",
+        "selectedJimpFunction": {
+            "name": "none",
+            "fn": "none",
+            "description": "Just loads the image.",
+            "parameters": []
+        },
+        "x": 750,
+        "y": 460,
+        "wires": [
+            [
+                "b1c175d43d226828",
+                "f37d8272fd895041"
+            ]
+        ]
+    },
+    {
+        "id": "906f4aebf4fa5204",
+        "type": "inject",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "dog.png",
+        "payloadType": "str",
+        "x": 540,
+        "y": 460,
+        "wires": [
+            [
+                "8cfd42ca200a0bdb"
+            ]
+        ]
+    },
+    {
+        "id": "b1c175d43d226828",
+        "type": "image viewer",
+        "z": "45a5798c969a3877",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "active": true,
+        "x": 990,
+        "y": 440,
+        "wires": [
+            []
         ]
     }
 ]

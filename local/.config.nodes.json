@@ -684,5 +684,66 @@
                 "file": "C:\\Users\\nnnpo\\Coding\\prodsup-67\\node-red-prototype\\node_modules\\node-red-node-ui-webcam\\ui_webcam.js"
             }
         }
+    },
+    "node-red-contrib-image-tools": {
+        "name": "node-red-contrib-image-tools",
+        "version": "2.1.1",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "jimp": {
+                "name": "jimp",
+                "types": [
+                    "jimp-image"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-image-tools",
+                "file": "C:\\Users\\nnnpo\\Coding\\prodsup-67\\node-red-prototype\\node_modules\\node-red-contrib-image-tools\\jimp.js"
+            },
+            "xzingDecode": {
+                "name": "xzingDecode",
+                "types": [
+                    "Barcode Decoder"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-image-tools",
+                "file": "C:\\Users\\nnnpo\\Coding\\prodsup-67\\node-red-prototype\\node_modules\\node-red-contrib-image-tools\\xzingDecode.js"
+            },
+            "barcodeWriter": {
+                "name": "barcodeWriter",
+                "types": [
+                    "Barcode Generator"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-image-tools",
+                "file": "C:\\Users\\nnnpo\\Coding\\prodsup-67\\node-red-prototype\\node_modules\\node-red-contrib-image-tools\\barcodeWriter.js"
+            },
+            "imageViewer": {
+                "name": "imageViewer",
+                "types": [
+                    "image viewer"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-image-tools",
+                "file": "C:\\Users\\nnnpo\\Coding\\prodsup-67\\node-red-prototype\\node_modules\\node-red-contrib-image-tools\\imageViewer.js"
+            },
+            "app": {
+                "name": "app",
+                "types": [],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-image-tools",
+                "file": "C:\\Users\\nnnpo\\Coding\\prodsup-67\\node-red-prototype\\node_modules\\node-red-contrib-image-tools\\app.js"
+            }
+        }
     }
 }
