@@ -2,7 +2,15 @@
     {
         "id": "45a5798c969a3877",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "ML",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c1226307d9cae10d",
+        "type": "tab",
+        "label": "Telegram",
         "disabled": false,
         "info": "",
         "env": []
@@ -489,5 +497,219 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "bbe3784586c6ae67",
+        "type": "inject",
+        "z": "c1226307d9cae10d",
+        "name": "Create JSON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "url",
+                "v": "https://api.telegram.org/bot7259382710:AAFF-MNyFO1XSGrDolREQNnXAhXIwS0v2lo/sendMessage",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"chat_id\":\"6094132297\",\"text\":\"Hi\"}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "e1755127ba9d796e"
+            ]
+        ]
+    },
+    {
+        "id": "45ea2013dc4fd404",
+        "type": "debug",
+        "z": "c1226307d9cae10d",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e1755127ba9d796e",
+        "type": "http request",
+        "z": "c1226307d9cae10d",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "45ea2013dc4fd404"
+            ]
+        ]
+    },
+    {
+        "id": "0f615744dbe14112",
+        "type": "function",
+        "z": "c1226307d9cae10d",
+        "name": "Gen Random Number",
+        "func": "msg.payload = Math.random()\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 300,
+        "wires": [
+            [
+                "da75ca486005b5c0"
+            ]
+        ]
+    },
+    {
+        "id": "de1063fb2e1fa793",
+        "type": "function",
+        "z": "c1226307d9cae10d",
+        "name": "Construct JSON",
+        "func": "// Input your info here\nconst TOKEN = \"7259382710:AAFF-MNyFO1XSGrDolREQNnXAhXIwS0v2lo\"\nconst CHAT_ID = \"6094132297\"\n\n// Store incoming message\nconst value = msg.payload\n\n// Construct \"JSON\"\nmsg.payload = {\n    chat_id: CHAT_ID,\n    text: value\n}\nmsg.url = `https://api.telegram.org/bot${TOKEN}/sendMessage`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "ceb858e7fb5e74e3"
+            ]
+        ]
+    },
+    {
+        "id": "411ffb12a7ed214e",
+        "type": "inject",
+        "z": "c1226307d9cae10d",
+        "name": "Constant Inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "0f615744dbe14112"
+            ]
+        ]
+    },
+    {
+        "id": "da75ca486005b5c0",
+        "type": "template",
+        "z": "c1226307d9cae10d",
+        "name": "Format Message",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} !",
+        "output": "str",
+        "x": 690,
+        "y": 300,
+        "wires": [
+            [
+                "de1063fb2e1fa793"
+            ]
+        ]
+    },
+    {
+        "id": "ceb858e7fb5e74e3",
+        "type": "http request",
+        "z": "c1226307d9cae10d",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 440,
+        "wires": [
+            [
+                "91c8cfaee8667a30"
+            ]
+        ]
+    },
+    {
+        "id": "91c8cfaee8667a30",
+        "type": "debug",
+        "z": "c1226307d9cae10d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b5d2913741b1655f",
+        "type": "comment",
+        "z": "c1226307d9cae10d",
+        "name": "Manual",
+        "info": "",
+        "x": 150,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "37539f8df9f4303a",
+        "type": "comment",
+        "z": "c1226307d9cae10d",
+        "name": "Data from sensor",
+        "info": "",
+        "x": 180,
+        "y": 240,
+        "wires": []
     }
 ]
