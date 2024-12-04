@@ -98,6 +98,30 @@
         "h": 97
     },
     {
+        "id": "ead106c74081932d",
+        "type": "group",
+        "z": "fb44c4795081b907",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2fd76490d972a42f",
+            "c7f87056904b0606",
+            "5e43f0fb8ad0b504",
+            "5e31f63b2cc0b61d"
+        ],
+        "x": 94,
+        "y": 791.5,
+        "w": 452,
+        "h": 157
+    },
+    {
         "id": "d07a2703c7a0604b",
         "type": "ui_base",
         "theme": {
@@ -1137,6 +1161,118 @@
         "info": "",
         "x": 170,
         "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2fd76490d972a42f",
+        "type": "inject",
+        "z": "fb44c4795081b907",
+        "g": "ead106c74081932d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 840,
+        "wires": [
+            [
+                "c7f87056904b0606"
+            ]
+        ]
+    },
+    {
+        "id": "c7f87056904b0606",
+        "type": "exec",
+        "z": "fb44c4795081b907",
+        "g": "ead106c74081932d",
+        "command": "termux-torch on",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 440,
+        "y": 840,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5e43f0fb8ad0b504",
+        "type": "exec",
+        "z": "fb44c4795081b907",
+        "g": "ead106c74081932d",
+        "command": "termux-torch off",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 440,
+        "y": 900,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5e31f63b2cc0b61d",
+        "type": "inject",
+        "z": "fb44c4795081b907",
+        "g": "ead106c74081932d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 900,
+        "wires": [
+            [
+                "5e43f0fb8ad0b504"
+            ]
+        ]
+    },
+    {
+        "id": "62947d108e266e5b",
+        "type": "comment",
+        "z": "fb44c4795081b907",
+        "name": "Stop/Reset Sensors",
+        "info": "",
+        "x": 190,
+        "y": 760,
         "wires": []
     }
 ]

@@ -16,6 +16,88 @@
         "env": []
     },
     {
+        "id": "fb44c4795081b907",
+        "type": "tab",
+        "label": "Mobile Sensor (Backup)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4097a0765b6ad06b",
+        "type": "group",
+        "z": "fb44c4795081b907",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "05ca7b200d3c2c82",
+            "e284037c1b396708",
+            "6cce6d88bbcb2297",
+            "8ca4b92d9af468a3"
+        ],
+        "x": 74,
+        "y": 571.5,
+        "w": 992,
+        "h": 97
+    },
+    {
+        "id": "ec0c6b9fefae9c86",
+        "type": "group",
+        "z": "fb44c4795081b907",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "5b07663155ef92c3",
+            "d7cec772ba0f11df",
+            "8e7cdf522c01d432",
+            "c43e5a7a93f552ca",
+            "5ad71465182472ad",
+            "eaa29e0e2ba58fd2"
+        ],
+        "x": 74,
+        "y": 299,
+        "w": 1172,
+        "h": 162
+    },
+    {
+        "id": "7f93a9294e905aef",
+        "type": "group",
+        "z": "fb44c4795081b907",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "81317456c8f0b20d",
+            "6b718b5a5fd8e376",
+            "2631b75361083c53",
+            "62ed66ac7b2efb79"
+        ],
+        "x": 74,
+        "y": 91.5,
+        "w": 852,
+        "h": 97
+    },
+    {
         "id": "d07a2703c7a0604b",
         "type": "ui_base",
         "theme": {
@@ -710,6 +792,351 @@
         "info": "",
         "x": 180,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5b07663155ef92c3",
+        "type": "exec",
+        "z": "fb44c4795081b907",
+        "g": "ec0c6b9fefae9c86",
+        "command": "termux-sensor -a",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "eaa29e0e2ba58fd2"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d7cec772ba0f11df",
+        "type": "inject",
+        "z": "fb44c4795081b907",
+        "g": "ec0c6b9fefae9c86",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "5b07663155ef92c3"
+            ]
+        ]
+    },
+    {
+        "id": "8e7cdf522c01d432",
+        "type": "debug",
+        "z": "fb44c4795081b907",
+        "g": "ec0c6b9fefae9c86",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "05ca7b200d3c2c82",
+        "type": "exec",
+        "z": "fb44c4795081b907",
+        "g": "4097a0765b6ad06b",
+        "command": "pkill termux",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 620,
+        "wires": [
+            [
+                "e284037c1b396708"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e284037c1b396708",
+        "type": "exec",
+        "z": "fb44c4795081b907",
+        "g": "4097a0765b6ad06b",
+        "command": "termux-sensor -c",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "8ca4b92d9af468a3"
+            ],
+            [
+                "8ca4b92d9af468a3"
+            ],
+            [
+                "8ca4b92d9af468a3"
+            ]
+        ]
+    },
+    {
+        "id": "6cce6d88bbcb2297",
+        "type": "inject",
+        "z": "fb44c4795081b907",
+        "g": "4097a0765b6ad06b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 620,
+        "wires": [
+            [
+                "05ca7b200d3c2c82"
+            ]
+        ]
+    },
+    {
+        "id": "8ca4b92d9af468a3",
+        "type": "debug",
+        "z": "fb44c4795081b907",
+        "g": "4097a0765b6ad06b",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "c43e5a7a93f552ca",
+        "type": "function",
+        "z": "fb44c4795081b907",
+        "g": "ec0c6b9fefae9c86",
+        "name": "Acceleration",
+        "func": "const sensor_name = \"LSM6DSO Acceleration Sensor\"\nconst payload = msg.payload\nconst values = payload[sensor_name].values\nconst output_value = Math.sqrt( values[0]**2 + values[1]**2 + values[2]**2)\nmsg.payload = output_value\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 340,
+        "wires": [
+            [
+                "8e7cdf522c01d432"
+            ]
+        ]
+    },
+    {
+        "id": "81317456c8f0b20d",
+        "type": "exec",
+        "z": "fb44c4795081b907",
+        "g": "7f93a9294e905aef",
+        "command": "termux-sensor -l",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "62ed66ac7b2efb79"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6b718b5a5fd8e376",
+        "type": "debug",
+        "z": "fb44c4795081b907",
+        "g": "7f93a9294e905aef",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2631b75361083c53",
+        "type": "inject",
+        "z": "fb44c4795081b907",
+        "g": "7f93a9294e905aef",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "81317456c8f0b20d"
+            ]
+        ]
+    },
+    {
+        "id": "62ed66ac7b2efb79",
+        "type": "json",
+        "z": "fb44c4795081b907",
+        "g": "7f93a9294e905aef",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 630,
+        "y": 140,
+        "wires": [
+            [
+                "6b718b5a5fd8e376"
+            ]
+        ]
+    },
+    {
+        "id": "5ad71465182472ad",
+        "type": "function",
+        "z": "fb44c4795081b907",
+        "g": "ec0c6b9fefae9c86",
+        "name": "Lux",
+        "func": "const sensor_name = \"TMD4910 Uncalibrated lux Sensor\" // Change here\nconst payload = msg.payload\nconst values = payload[sensor_name].values\nconst output = values[0] // Modify here\nmsg.payload = output\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 420,
+        "wires": [
+            [
+                "8e7cdf522c01d432"
+            ]
+        ]
+    },
+    {
+        "id": "eaa29e0e2ba58fd2",
+        "type": "json",
+        "z": "fb44c4795081b907",
+        "g": "ec0c6b9fefae9c86",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 690,
+        "y": 380,
+        "wires": [
+            [
+                "c43e5a7a93f552ca",
+                "5ad71465182472ad"
+            ]
+        ]
+    },
+    {
+        "id": "594164d5c9b1d05f",
+        "type": "comment",
+        "z": "fb44c4795081b907",
+        "name": "Inspect Sensors",
+        "info": "",
+        "x": 160,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "de11ce4e9986c57a",
+        "type": "comment",
+        "z": "fb44c4795081b907",
+        "name": "Get Sensor Values",
+        "info": "",
+        "x": 170,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "22c9026735a164f5",
+        "type": "comment",
+        "z": "fb44c4795081b907",
+        "name": "Stop/Reset Sensors",
+        "info": "",
+        "x": 170,
+        "y": 540,
         "wires": []
     }
 ]
