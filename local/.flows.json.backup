@@ -593,7 +593,7 @@
         "type": "function",
         "z": "c1226307d9cae10d",
         "name": "Construct JSON",
-        "func": "// Input your info here\nconst TOKEN = \"bot7259382710:AAFF-MNyFO1XSGrDolREQNnXAhXIwS0v2lo\"\nconst CHAT_ID = \"6094132297\"\n\n// Store incoming message\nconst value = msg.payload\n\n// Construct \"JSON\"\nmsg.payload = {\n    chat_id: CHAT_ID,\n    text: value\n}\nmsg.url = `https://api.telegram.org/${TOKEN}/sendMessage`\nreturn msg;",
+        "func": "// Input your info here\nconst TOKEN = \"7259382710:AAFF-MNyFO1XSGrDolREQNnXAhXIwS0v2lo\"\nconst CHAT_ID = \"6094132297\"\n\n// Store incoming message\nconst value = msg.payload\n\n// Construct \"JSON\"\nmsg.payload = {\n    chat_id: CHAT_ID,\n    text: value\n}\nmsg.url = `https://api.telegram.org/bot${TOKEN}/sendMessage`\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
