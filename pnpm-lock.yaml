@@ -14,6 +14,9 @@ importers:
       node-red-contrib-image-tools:
         specifier: ^2.1.1
         version: 2.1.1
+      node-red-contrib-ui-media:
+        specifier: ^2.0.0
+        version: 2.0.0
       node-red-dashboard:
         specifier: ^3.6.5
         version: 3.6.5
@@ -781,6 +784,10 @@ packages:
     resolution: {integrity: sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==}
     engines: {node: '>= 6'}
 
+  formidable@1.2.6:
+    resolution: {integrity: sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==}
+    deprecated: 'Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau'
+
   forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
@@ -1038,6 +1045,11 @@ packages:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
 
+  mkdirp@1.0.4:
+    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   mkdirp@3.0.1:
     resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
     engines: {node: '>=10'}
@@ -1100,6 +1112,9 @@ packages:
   node-red-contrib-image-tools@2.1.1:
     resolution: {integrity: sha512-Skg+o6q9wh1wFsKVqdAkUMw7l1spPoTK9XAmO9Mup8AEtgbH8DiqBzk0qGz/+nPLcEv6zUhVDUo9N0Tp/3QxOA==}
     engines: {node: '>=14.0.0'}
+
+  node-red-contrib-ui-media@2.0.0:
+    resolution: {integrity: sha512-jTZ24o6g+xBTFQ8UBz+bCq1H5Zo+7xvcQ7TrkfN1/uzmeDWbelXcEL/BY+mYnfnLjjiEOJDBU0sCn0G//VkSCg==}
 
   node-red-dashboard@3.6.5:
     resolution: {integrity: sha512-zoTVq13lh3OXzxBdFJByxaiijHLOCdkVfR5eCKXNm0RNFfGFyaqPQ06OoeLPXTmhU6KU/VDINxCKJUtdChg9Iw==}
@@ -2541,6 +2556,8 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
+  formidable@1.2.6: {}
+
   forwarded@0.2.0: {}
 
   fresh@0.5.2: {}
@@ -2812,6 +2829,8 @@ snapshots:
     dependencies:
       minimist: 1.2.8
 
+  mkdirp@1.0.4: {}
+
   mkdirp@3.0.1: {}
 
   moment-timezone@0.5.46:
@@ -2906,6 +2925,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - encoding
+
+  node-red-contrib-ui-media@2.0.0:
+    dependencies:
+      formidable: 1.2.6
+      mime-types: 2.1.35
+      mkdirp: 1.0.4
 
   node-red-dashboard@3.6.5:
     dependencies:

@@ -13,6 +13,7 @@
   "dependencies": {
     "node-red": "^4.0.5",
     "node-red-contrib-image-tools": "^2.1.1",
+    "node-red-contrib-ui-media": "^2.0.0",
     "node-red-dashboard": "^3.6.5",
     "node-red-node-ui-webcam": "^0.4.0"
   }

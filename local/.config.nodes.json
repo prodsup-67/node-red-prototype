@@ -745,5 +745,24 @@
                 "file": "C:\\Users\\nr\\Coding\\prodsup\\node-red-prototype\\node_modules\\node-red-contrib-image-tools\\app.js"
             }
         }
+    },
+    "node-red-contrib-ui-media": {
+        "name": "node-red-contrib-ui-media",
+        "version": "2.0.0",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "ui_media": {
+                "name": "ui_media",
+                "types": [
+                    "ui_media"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-ui-media",
+                "file": "C:\\Users\\nr\\Coding\\prodsup\\node-red-prototype\\node_modules\\node-red-contrib-ui-media\\ui_media.js"
+            }
+        }
     }
 }

@@ -26,7 +26,7 @@
     {
         "id": "6dc14b92897e5897",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Object Detection",
         "disabled": false,
         "info": "",
         "env": []
@@ -1687,13 +1687,13 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 230,
+        "x": 130,
         "y": 440,
         "wires": [
             [
                 "09a9529bf64b6abb",
                 "3a85670e36279ac9",
-                "6e3a93b6e5c66f8e"
+                "f97f76bdbbe83faf"
             ]
         ]
     },
@@ -1789,7 +1789,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 700,
+        "x": 560,
         "y": 540,
         "wires": [
             []
@@ -1800,15 +1800,15 @@
         "type": "function",
         "z": "6dc14b92897e5897",
         "name": "function 3",
-        "func": "const html = `<img width=\"300px\" src=\"http://localhost:3004/static/output.png\" />`\nmsg.payload = html\nreturn msg",
+        "func": "const obj = JSON.parse(msg.payload)\nconst image = obj.image\nconst html = `<img width=\"300px\" src=\"http://localhost:3004/static/${image}\" />`\nmsg.payload = html\nconsole.log(html)\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
-        "y": 540,
+        "x": 380,
+        "y": 520,
         "wires": [
             [
                 "b8bcd7b484afd86e"
@@ -1899,8 +1899,111 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 260,
+        "x": 120,
         "y": 560,
+        "wires": [
+            [
+                "6e3a93b6e5c66f8e"
+            ]
+        ]
+    },
+    {
+        "id": "7df2a0db3e863804",
+        "type": "ui_webcam",
+        "z": "6dc14b92897e5897",
+        "name": "",
+        "group": "f80912a02e0ac3cf",
+        "order": 2,
+        "width": 0,
+        "height": 5,
+        "countdown": false,
+        "autoStart": false,
+        "hideCaptureButton": false,
+        "showImage": "2",
+        "mirror": true,
+        "format": "png",
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "db6e879f45a40da1"
+            ]
+        ]
+    },
+    {
+        "id": "68c04bd675856d00",
+        "type": "ui_button",
+        "z": "6dc14b92897e5897",
+        "name": "",
+        "group": "f80912a02e0ac3cf",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 50,
+        "y": 280,
+        "wires": [
+            [
+                "bf9dedb46f2b33d7"
+            ]
+        ]
+    },
+    {
+        "id": "bf9dedb46f2b33d7",
+        "type": "change",
+        "z": "6dc14b92897e5897",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "capture",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "7df2a0db3e863804"
+            ]
+        ]
+    },
+    {
+        "id": "f97f76bdbbe83faf",
+        "type": "delay",
+        "z": "6dc14b92897e5897",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 480,
         "wires": [
             [
                 "6e3a93b6e5c66f8e"
