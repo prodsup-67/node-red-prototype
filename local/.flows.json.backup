@@ -1693,7 +1693,7 @@
             [
                 "09a9529bf64b6abb",
                 "3a85670e36279ac9",
-                "f97f76bdbbe83faf"
+                "6e3a93b6e5c66f8e"
             ]
         ]
     },
@@ -1738,7 +1738,7 @@
         "type": "function",
         "z": "6dc14b92897e5897",
         "name": "function 2",
-        "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.predictions) {\n    const classStr = pred.class;\n    const score = pred.score;\n    const scoreP = (score * 100).toFixed(1);\n    textOut += `👉${classStr} (${scoreP}%) <br/>`;\n}\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
+        "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.counts) {\n    const classStr = pred.class;\n    const count = pred.count;\n    textOut += `👉${classStr} (X${count}) <br/>`;\n}\nif (!textOut) textOut = \"No Detection <br/>\"\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1759,12 +1759,12 @@
         "z": "6dc14b92897e5897",
         "group": "f80912a02e0ac3cf",
         "order": 0,
-        "width": 0,
-        "height": 0,
+        "width": "6",
+        "height": "5",
         "name": "",
         "label": "text",
         "format": "{{msg.payload}}",
-        "layout": "row-spread",
+        "layout": "col-center",
         "className": "",
         "style": false,
         "font": "",
@@ -1800,7 +1800,7 @@
         "type": "function",
         "z": "6dc14b92897e5897",
         "name": "function 3",
-        "func": "const obj = JSON.parse(msg.payload)\nconst image = obj.image\nconst html = `<img width=\"300px\" src=\"http://localhost:3004/static/${image}\" />`\nmsg.payload = html\nconsole.log(html)\nreturn msg",
+        "func": "const obj = JSON.parse(msg.payload)\nconst imageURL = obj.imageURL\nconst html = `<img width=\"300px\" src=\"${imageURL}\" />`\nmsg.payload = html\nconsole.log(html)\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1982,31 +1982,6 @@
         "wires": [
             [
                 "7df2a0db3e863804"
-            ]
-        ]
-    },
-    {
-        "id": "f97f76bdbbe83faf",
-        "type": "delay",
-        "z": "6dc14b92897e5897",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 240,
-        "y": 480,
-        "wires": [
-            [
-                "6e3a93b6e5c66f8e"
             ]
         ]
     }
