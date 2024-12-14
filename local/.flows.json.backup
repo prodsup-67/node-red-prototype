@@ -188,6 +188,67 @@
         "h": 202
     },
     {
+        "id": "655172d33b19d8a8",
+        "type": "group",
+        "z": "6dc14b92897e5897",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "4a0032481b5bf988",
+            "db6e879f45a40da1",
+            "f5db6ec1d4d4e6a8",
+            "f8f2cdbf29afc90f",
+            "143c48862cda110d",
+            "94e2ab5e320c4cb7",
+            "7df2a0db3e863804",
+            "68c04bd675856d00",
+            "bf9dedb46f2b33d7",
+            "c2d2c0cd3f522215",
+            "008cf31bc8728335"
+        ],
+        "x": 94,
+        "y": 59,
+        "w": 912,
+        "h": 322
+    },
+    {
+        "id": "26101374666e073a",
+        "type": "group",
+        "z": "6dc14b92897e5897",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "316838a928b8f35a",
+            "1b08605b4d22afc3",
+            "3a85670e36279ac9",
+            "0c97d547e7e69ee5",
+            "b8bcd7b484afd86e",
+            "6e3a93b6e5c66f8e",
+            "b04215f03307f87f",
+            "901c4a5bf7d11e09",
+            "dbfe568829c54b5a",
+            "d120cd985d668968"
+        ],
+        "x": 94,
+        "y": 459,
+        "w": 752,
+        "h": 402
+    },
+    {
         "id": "d07a2703c7a0604b",
         "type": "ui_base",
         "theme": {
@@ -1527,6 +1588,7 @@
         "id": "4a0032481b5bf988",
         "type": "inject",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "props": [
             {
@@ -1544,8 +1606,8 @@
         "topic": "",
         "payload": "img/dog.png",
         "payloadType": "str",
-        "x": 150,
-        "y": 100,
+        "x": 290,
+        "y": 160,
         "wires": [
             [
                 "db6e879f45a40da1"
@@ -1556,6 +1618,7 @@
         "id": "db6e879f45a40da1",
         "type": "jimp-image",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "data": "payload",
         "dataType": "msg",
@@ -1586,8 +1649,8 @@
             "description": "Just loads the image.",
             "parameters": []
         },
-        "x": 390,
-        "y": 100,
+        "x": 590,
+        "y": 240,
         "wires": [
             [
                 "143c48862cda110d"
@@ -1598,13 +1661,14 @@
         "id": "f5db6ec1d4d4e6a8",
         "type": "image viewer",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "width": 160,
         "data": "payload",
         "dataType": "msg",
         "active": true,
-        "x": 750,
-        "y": 60,
+        "x": 870,
+        "y": 160,
         "wires": [
             []
         ]
@@ -1613,6 +1677,7 @@
         "id": "f8f2cdbf29afc90f",
         "type": "jimp-image",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "data": "payload",
         "dataType": "msg",
@@ -1662,8 +1727,8 @@
                 }
             ]
         },
-        "x": 770,
-        "y": 260,
+        "x": 930,
+        "y": 240,
         "wires": [
             [
                 "1b08605b4d22afc3",
@@ -1675,6 +1740,7 @@
         "id": "316838a928b8f35a",
         "type": "http request",
         "z": "6dc14b92897e5897",
+        "g": "26101374666e073a",
         "name": "",
         "method": "POST",
         "ret": "txt",
@@ -1687,8 +1753,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 110,
-        "y": 540,
+        "x": 190,
+        "y": 660,
         "wires": [
             [
                 "3a85670e36279ac9",
@@ -1701,7 +1767,8 @@
         "id": "1b08605b4d22afc3",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 1",
+        "g": "26101374666e073a",
+        "name": "Prepare Img Payload",
         "func": "msg.payload = { \"imageEncoded\": Buffer.from(msg.payload).toString('base64') }\nmsg.headers = { \"Content-Type\": \"application/x-www-form-urlencoded\" }\nmsg.url = \"http://localhost:3004/upload_base64\"\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -1709,12 +1776,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 200,
-        "y": 380,
+        "x": 220,
+        "y": 560,
         "wires": [
             [
                 "316838a928b8f35a",
-                "7a00efdb3378c945",
                 "b04215f03307f87f"
             ]
         ]
@@ -1723,7 +1789,8 @@
         "id": "3a85670e36279ac9",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 2",
+        "g": "26101374666e073a",
+        "name": "Format Text",
         "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.countsArr) {\n    const classStr = pred.class;\n    const count = pred.count;\n    textOut += `👉${classStr} (x${count}) <br/>`;\n}\nif (!textOut) textOut = \"<center><i>No Object Detected</i></center><br/>\"\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -1731,8 +1798,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 540,
+        "x": 470,
+        "y": 700,
         "wires": [
             [
                 "0c97d547e7e69ee5"
@@ -1743,6 +1810,7 @@
         "id": "0c97d547e7e69ee5",
         "type": "ui_text",
         "z": "6dc14b92897e5897",
+        "g": "26101374666e073a",
         "group": "f80912a02e0ac3cf",
         "order": 3,
         "width": "6",
@@ -1756,16 +1824,17 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 670,
-        "y": 540,
+        "x": 730,
+        "y": 620,
         "wires": []
     },
     {
         "id": "b8bcd7b484afd86e",
         "type": "ui_template",
         "z": "6dc14b92897e5897",
+        "g": "26101374666e073a",
         "group": "f80912a02e0ac3cf",
-        "name": "",
+        "name": "Display Image",
         "order": 4,
         "width": "6",
         "height": "6",
@@ -1775,8 +1844,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 580,
-        "y": 640,
+        "x": 720,
+        "y": 700,
         "wires": [
             []
         ]
@@ -1785,16 +1854,17 @@
         "id": "6e3a93b6e5c66f8e",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 3",
-        "func": "const obj = JSON.parse(msg.payload)\nconst imageURL = obj.imageURL\nconst html = `<img width=\"300px\" src=\"${imageURL}\" />`\nmsg.payload = html\nconsole.log(html)\nreturn msg",
+        "g": "26101374666e073a",
+        "name": "Load Annotated Image",
+        "func": "const obj = JSON.parse(msg.payload)\nconst imageURL = obj.imageURL\nconst html = `<img width=\"300px\" src=\"${imageURL}\" />`\nmsg.payload = html\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 640,
+        "x": 480,
+        "y": 760,
         "wires": [
             [
                 "b8bcd7b484afd86e"
@@ -1805,7 +1875,8 @@
         "id": "143c48862cda110d",
         "type": "change",
         "z": "6dc14b92897e5897",
-        "name": "",
+        "g": "655172d33b19d8a8",
+        "name": "Set Resize",
         "rules": [
             {
                 "t": "set",
@@ -1827,7 +1898,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
+        "x": 750,
         "y": 240,
         "wires": [
             [
@@ -1839,6 +1910,7 @@
         "id": "94e2ab5e320c4cb7",
         "type": "inject",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "props": [
             {
@@ -1856,8 +1928,8 @@
         "topic": "",
         "payload": "img/house.jpg",
         "payloadType": "str",
-        "x": 130,
-        "y": 180,
+        "x": 290,
+        "y": 200,
         "wires": [
             [
                 "db6e879f45a40da1"
@@ -1865,38 +1937,10 @@
         ]
     },
     {
-        "id": "16cb46aa241b6ddb",
-        "type": "inject",
-        "z": "6dc14b92897e5897",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 640,
-        "wires": [
-            [
-                "6e3a93b6e5c66f8e"
-            ]
-        ]
-    },
-    {
         "id": "7df2a0db3e863804",
         "type": "ui_webcam",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "group": "f80912a02e0ac3cf",
         "order": 1,
@@ -1908,8 +1952,8 @@
         "showImage": "2",
         "mirror": true,
         "format": "png",
-        "x": 260,
-        "y": 240,
+        "x": 520,
+        "y": 340,
         "wires": [
             [
                 "db6e879f45a40da1"
@@ -1920,6 +1964,7 @@
         "id": "68c04bd675856d00",
         "type": "ui_button",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "group": "f80912a02e0ac3cf",
         "order": 2,
@@ -1936,8 +1981,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 50,
-        "y": 280,
+        "x": 170,
+        "y": 340,
         "wires": [
             [
                 "bf9dedb46f2b33d7"
@@ -1948,6 +1993,7 @@
         "id": "bf9dedb46f2b33d7",
         "type": "change",
         "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
         "name": "",
         "rules": [
             {
@@ -1963,8 +2009,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 200,
-        "y": 300,
+        "x": 340,
+        "y": 340,
         "wires": [
             [
                 "7df2a0db3e863804"
@@ -1972,29 +2018,11 @@
         ]
     },
     {
-        "id": "7a00efdb3378c945",
-        "type": "template",
-        "z": "6dc14b92897e5897",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "Loading...",
-        "output": "str",
-        "x": 400,
-        "y": 360,
-        "wires": [
-            [
-                "0c97d547e7e69ee5"
-            ]
-        ]
-    },
-    {
         "id": "b04215f03307f87f",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 4",
+        "g": "26101374666e073a",
+        "name": "Loading",
         "func": "const html=`<center>Loading...</center>`\nmsg.payload = html\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -2002,11 +2030,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 400,
+        "x": 480,
+        "y": 600,
         "wires": [
             [
-                "b8bcd7b484afd86e"
+                "b8bcd7b484afd86e",
+                "0c97d547e7e69ee5"
             ]
         ]
     },
@@ -2014,7 +2043,8 @@
         "id": "901c4a5bf7d11e09",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 5",
+        "g": "26101374666e073a",
+        "name": "Count Person",
         "func": "// Select class here\nconst selectClass = 'person'\n// Code \nconst obj = JSON.parse(msg.payload)\nmsg.payload = obj.countsObj?.[selectClass] ?? 0 \nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -2022,8 +2052,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 740,
+        "x": 460,
+        "y": 820,
         "wires": [
             [
                 "dbfe568829c54b5a"
@@ -2034,6 +2064,7 @@
         "id": "dbfe568829c54b5a",
         "type": "debug",
         "z": "6dc14b92897e5897",
+        "g": "26101374666e073a",
         "name": "debug 6",
         "active": true,
         "tosidebar": true,
@@ -2042,8 +2073,60 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 740,
+        "x": 720,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "c2d2c0cd3f522215",
+        "type": "inject",
+        "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "img/classroom.jpg",
+        "payloadType": "str",
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "db6e879f45a40da1"
+            ]
+        ]
+    },
+    {
+        "id": "008cf31bc8728335",
+        "type": "comment",
+        "z": "6dc14b92897e5897",
+        "g": "655172d33b19d8a8",
+        "name": "Input",
+        "info": "",
+        "x": 190,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d120cd985d668968",
+        "type": "comment",
+        "z": "6dc14b92897e5897",
+        "g": "26101374666e073a",
+        "name": "Processing",
+        "info": "",
+        "x": 200,
+        "y": 500,
         "wires": []
     }
 ]
