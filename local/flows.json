@@ -1544,8 +1544,8 @@
         "topic": "",
         "payload": "img/dog.png",
         "payloadType": "str",
-        "x": 150,
-        "y": 100,
+        "x": 270,
+        "y": 60,
         "wires": [
             [
                 "db6e879f45a40da1"
@@ -1586,8 +1586,8 @@
             "description": "Just loads the image.",
             "parameters": []
         },
-        "x": 390,
-        "y": 100,
+        "x": 570,
+        "y": 120,
         "wires": [
             [
                 "143c48862cda110d"
@@ -1603,8 +1603,8 @@
         "data": "payload",
         "dataType": "msg",
         "active": true,
-        "x": 750,
-        "y": 60,
+        "x": 910,
+        "y": 240,
         "wires": [
             []
         ]
@@ -1662,8 +1662,8 @@
                 }
             ]
         },
-        "x": 770,
-        "y": 260,
+        "x": 930,
+        "y": 120,
         "wires": [
             [
                 "1b08605b4d22afc3",
@@ -1687,13 +1687,13 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 130,
-        "y": 440,
+        "x": 150,
+        "y": 500,
         "wires": [
             [
-                "09a9529bf64b6abb",
                 "3a85670e36279ac9",
-                "6e3a93b6e5c66f8e"
+                "6e3a93b6e5c66f8e",
+                "901c4a5bf7d11e09"
             ]
         ]
     },
@@ -1701,7 +1701,7 @@
         "id": "1b08605b4d22afc3",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 1",
+        "name": "Prepare Image",
         "func": "msg.payload = { \"imageEncoded\": Buffer.from(msg.payload).toString('base64') }\nmsg.headers = { \"Content-Type\": \"application/x-www-form-urlencoded\" }\nmsg.url = \"http://localhost:3004/upload_base64\"\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -1709,44 +1709,30 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 340,
+        "x": 160,
+        "y": 400,
         "wires": [
             [
-                "316838a928b8f35a"
+                "316838a928b8f35a",
+                "7a00efdb3378c945",
+                "b04215f03307f87f"
             ]
         ]
-    },
-    {
-        "id": "09a9529bf64b6abb",
-        "type": "debug",
-        "z": "6dc14b92897e5897",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 740,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "3a85670e36279ac9",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 2",
-        "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.counts) {\n    const classStr = pred.class;\n    const count = pred.count;\n    textOut += `👉${classStr} (x${count}) <br/>`;\n}\nif (!textOut) textOut = \"No Detection <br/>\"\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
+        "name": "Format Text",
+        "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.countsArr) {\n    const classStr = pred.class;\n    const count = pred.count;\n    textOut += `👉${classStr} (x${count}) <br/>`;\n}\nif (!textOut) textOut = \"<center><i>No Object Detected</i></center><br/>\"\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 400,
+        "x": 410,
+        "y": 520,
         "wires": [
             [
                 "0c97d547e7e69ee5"
@@ -1758,11 +1744,11 @@
         "type": "ui_text",
         "z": "6dc14b92897e5897",
         "group": "f80912a02e0ac3cf",
-        "order": 0,
+        "order": 3,
         "width": "6",
         "height": "5",
         "name": "",
-        "label": "text",
+        "label": "Object Detection",
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
@@ -1770,8 +1756,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 750,
-        "y": 440,
+        "x": 690,
+        "y": 460,
         "wires": []
     },
     {
@@ -1779,8 +1765,8 @@
         "type": "ui_template",
         "z": "6dc14b92897e5897",
         "group": "f80912a02e0ac3cf",
-        "name": "",
-        "order": 1,
+        "name": "Display Image",
+        "order": 4,
         "width": "6",
         "height": "6",
         "format": "<div ng-bind-html=\"msg.payload\"></div>",
@@ -1789,7 +1775,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 560,
+        "x": 680,
         "y": 540,
         "wires": [
             []
@@ -1799,16 +1785,16 @@
         "id": "6e3a93b6e5c66f8e",
         "type": "function",
         "z": "6dc14b92897e5897",
-        "name": "function 3",
-        "func": "const obj = JSON.parse(msg.payload)\nconst imageURL = obj.imageURL\nconst html = `<img width=\"300px\" src=\"${imageURL}\" />`\nmsg.payload = html\nconsole.log(html)\nreturn msg",
+        "name": "Load Annotated Image",
+        "func": "const obj = JSON.parse(msg.payload)\nconst imageURL = obj.imageURL\nconst html = `<img width=\"300px\" src=\"${imageURL}\" />`\nmsg.payload = html\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 520,
+        "x": 440,
+        "y": 580,
         "wires": [
             [
                 "b8bcd7b484afd86e"
@@ -1841,8 +1827,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
-        "y": 240,
+        "x": 740,
+        "y": 120,
         "wires": [
             [
                 "f8f2cdbf29afc90f"
@@ -1870,40 +1856,11 @@
         "topic": "",
         "payload": "img/house.jpg",
         "payloadType": "str",
-        "x": 130,
-        "y": 180,
+        "x": 270,
+        "y": 140,
         "wires": [
             [
                 "db6e879f45a40da1"
-            ]
-        ]
-    },
-    {
-        "id": "16cb46aa241b6ddb",
-        "type": "inject",
-        "z": "6dc14b92897e5897",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 560,
-        "wires": [
-            [
-                "6e3a93b6e5c66f8e"
             ]
         ]
     },
@@ -1913,7 +1870,7 @@
         "z": "6dc14b92897e5897",
         "name": "",
         "group": "f80912a02e0ac3cf",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 5,
         "countdown": false,
@@ -1922,8 +1879,8 @@
         "showImage": "2",
         "mirror": true,
         "format": "png",
-        "x": 260,
-        "y": 240,
+        "x": 520,
+        "y": 220,
         "wires": [
             [
                 "db6e879f45a40da1"
@@ -1936,7 +1893,7 @@
         "z": "6dc14b92897e5897",
         "name": "",
         "group": "f80912a02e0ac3cf",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1950,8 +1907,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 50,
-        "y": 280,
+        "x": 190,
+        "y": 220,
         "wires": [
             [
                 "bf9dedb46f2b33d7"
@@ -1977,12 +1934,87 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 200,
-        "y": 300,
+        "x": 340,
+        "y": 220,
         "wires": [
             [
                 "7df2a0db3e863804"
             ]
         ]
+    },
+    {
+        "id": "7a00efdb3378c945",
+        "type": "template",
+        "z": "6dc14b92897e5897",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Loading...",
+        "output": "str",
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "0c97d547e7e69ee5"
+            ]
+        ]
+    },
+    {
+        "id": "b04215f03307f87f",
+        "type": "function",
+        "z": "6dc14b92897e5897",
+        "name": "function 4",
+        "func": "const html=`<center>Loading...</center>`\nmsg.payload = html\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "b8bcd7b484afd86e"
+            ]
+        ]
+    },
+    {
+        "id": "901c4a5bf7d11e09",
+        "type": "function",
+        "z": "6dc14b92897e5897",
+        "name": "Extract Number of Object Detected",
+        "func": "// Select class here\nconst selectClass = 'person'\n// Code \nconst obj = JSON.parse(msg.payload)\nmsg.payload = obj.countsObj?.[selectClass] ?? 0 \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 660,
+        "wires": [
+            [
+                "dbfe568829c54b5a"
+            ]
+        ]
+    },
+    {
+        "id": "dbfe568829c54b5a",
+        "type": "debug",
+        "z": "6dc14b92897e5897",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 660,
+        "wires": []
     }
 ]

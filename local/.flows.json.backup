@@ -1687,13 +1687,13 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 130,
-        "y": 440,
+        "x": 110,
+        "y": 540,
         "wires": [
             [
-                "09a9529bf64b6abb",
                 "3a85670e36279ac9",
-                "6e3a93b6e5c66f8e"
+                "6e3a93b6e5c66f8e",
+                "901c4a5bf7d11e09"
             ]
         ]
     },
@@ -1709,44 +1709,30 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 340,
+        "x": 200,
+        "y": 380,
         "wires": [
             [
-                "316838a928b8f35a"
+                "316838a928b8f35a",
+                "7a00efdb3378c945",
+                "b04215f03307f87f"
             ]
         ]
-    },
-    {
-        "id": "09a9529bf64b6abb",
-        "type": "debug",
-        "z": "6dc14b92897e5897",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 740,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "3a85670e36279ac9",
         "type": "function",
         "z": "6dc14b92897e5897",
         "name": "function 2",
-        "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.counts) {\n    const classStr = pred.class;\n    const count = pred.count;\n    textOut += `👉${classStr} (X${count}) <br/>`;\n}\nif (!textOut) textOut = \"No Detection <br/>\"\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
+        "func": "const obj = JSON.parse(msg.payload)\nlet textOut = \"\";\nfor (const pred of obj.countsArr) {\n    const classStr = pred.class;\n    const count = pred.count;\n    textOut += `👉${classStr} (x${count}) <br/>`;\n}\nif (!textOut) textOut = \"<center><i>No Object Detected</i></center><br/>\"\nconst dt = new Date()\nconst datestring = dt.toLocaleDateString();\nconst timestring = dt.toLocaleTimeString();\ntextOut += `<br/>📆${datestring} ⏰${timestring}`;\nmsg.payload = textOut;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 400,
+        "x": 400,
+        "y": 540,
         "wires": [
             [
                 "0c97d547e7e69ee5"
@@ -1758,11 +1744,11 @@
         "type": "ui_text",
         "z": "6dc14b92897e5897",
         "group": "f80912a02e0ac3cf",
-        "order": 0,
+        "order": 3,
         "width": "6",
         "height": "5",
         "name": "",
-        "label": "text",
+        "label": "Object Detection",
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
@@ -1770,8 +1756,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 750,
-        "y": 440,
+        "x": 670,
+        "y": 540,
         "wires": []
     },
     {
@@ -1780,7 +1766,7 @@
         "z": "6dc14b92897e5897",
         "group": "f80912a02e0ac3cf",
         "name": "",
-        "order": 1,
+        "order": 4,
         "width": "6",
         "height": "6",
         "format": "<div ng-bind-html=\"msg.payload\"></div>",
@@ -1789,8 +1775,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 560,
-        "y": 540,
+        "x": 580,
+        "y": 640,
         "wires": [
             []
         ]
@@ -1808,7 +1794,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "b8bcd7b484afd86e"
@@ -1899,8 +1885,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 560,
+        "x": 100,
+        "y": 640,
         "wires": [
             [
                 "6e3a93b6e5c66f8e"
@@ -1913,7 +1899,7 @@
         "z": "6dc14b92897e5897",
         "name": "",
         "group": "f80912a02e0ac3cf",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 5,
         "countdown": false,
@@ -1936,7 +1922,7 @@
         "z": "6dc14b92897e5897",
         "name": "",
         "group": "f80912a02e0ac3cf",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1984,5 +1970,80 @@
                 "7df2a0db3e863804"
             ]
         ]
+    },
+    {
+        "id": "7a00efdb3378c945",
+        "type": "template",
+        "z": "6dc14b92897e5897",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Loading...",
+        "output": "str",
+        "x": 400,
+        "y": 360,
+        "wires": [
+            [
+                "0c97d547e7e69ee5"
+            ]
+        ]
+    },
+    {
+        "id": "b04215f03307f87f",
+        "type": "function",
+        "z": "6dc14b92897e5897",
+        "name": "function 4",
+        "func": "const html=`<center>Loading...</center>`\nmsg.payload = html\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "b8bcd7b484afd86e"
+            ]
+        ]
+    },
+    {
+        "id": "901c4a5bf7d11e09",
+        "type": "function",
+        "z": "6dc14b92897e5897",
+        "name": "function 5",
+        "func": "// Select class here\nconst selectClass = 'person'\n// Code \nconst obj = JSON.parse(msg.payload)\nmsg.payload = obj.countsObj?.[selectClass] ?? 0 \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 740,
+        "wires": [
+            [
+                "dbfe568829c54b5a"
+            ]
+        ]
+    },
+    {
+        "id": "dbfe568829c54b5a",
+        "type": "debug",
+        "z": "6dc14b92897e5897",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 740,
+        "wires": []
     }
 ]
